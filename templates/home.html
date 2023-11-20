@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body style="background-color: lightblue;">
+    
+<h1>Welcome to  Django Website</h1>
+
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <label for="title">Title:  </label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" rows="2" required></textarea><br>
+
+    <button type="submit">POST</button>
+</form>
+
+{% if entries %}
+    <div>
+        <h2>All Entries:</h2>
+        {% for entry in entries %}
+            <p><strong>Title:</strong> {{ entry.title }}</p>
+            <p><strong>Content:</strong> {{ entry.content }}</p>
+            <hr>
+        {% endfor %}
+    </div>
+{% endif %}
+
+</body>
+</html>
